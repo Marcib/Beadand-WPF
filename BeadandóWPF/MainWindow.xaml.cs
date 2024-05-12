@@ -20,52 +20,18 @@ namespace BeadandóWPF
     /// </summary>
     public partial class MainWindow : Window
     {
-        public int [] Cards = new int [9] {2,3,4,5,6,7,8,9,10};
         public Random rnd = new Random();
-        public int playerhand; 
-        public int dealerhand;
+        public int playerhand=0; 
+        public int dealerhand=0;
         public string result;
-
+        public int kartya;
         public MainWindow()
         {
             InitializeComponent();
-            NewGame();
         }
-
-        private void NewGame()
-        {
-
-
-
-         int playerhand = 0;
-         int dealerhand = 0;
-
-        // Kiosztás
-       
-                playerhand+= (rnd.Next(1, 11));
-                
-                dealerhand+=(rnd.Next(1, 11));
-                
-
-            
-
-            
-
-            // Frissítés
-            UpdateHands();
-        }
-
-        private void UpdateHands()
-        {
-            playercardsbox.Text=playerhand.ToString();
-      
-            dealercardsbox.Text = dealerhand.ToString();
-        }
-
         private void Hit_Click(object sender, RoutedEventArgs e)
         {
-            
-            playerhand +=(rnd.Next(1, 11));
+            playerhand +=(rnd.Next(1, 11)); 
             UpdateHands();
             if (playerhand>21)
             {
@@ -81,20 +47,21 @@ namespace BeadandóWPF
                 dealerhand+=(rnd.Next(1, 11));
             }
             UpdateHands();
-      
-
             string result;
             if (playerhand > 21 || (dealerhand <= 21 && dealerhand > playerhand))
             {
                 result = "Dealer wins!";
+                NewGame.Visibility = Visibility.Visible;
             }
             else if (dealerhand > 21 || dealerhand < playerhand)
             {
                 result = "Player wins!";
+                NewGame.Visibility = Visibility.Visible;
             }
             else
             {
                 result = "Draw!";
+                NewGame.Visibility = Visibility.Visible;
             }
 
             MessageBox.Show(result, "Game Over");
@@ -102,9 +69,34 @@ namespace BeadandóWPF
 
         private void NewGame_Click(object sender, RoutedEventArgs e)
         {
-            NewGame();
+          
+            ClearHands();
+            // Kiosztás           
+          
+            // Frissítés
+            
+            NewGame.Visibility = Visibility.Hidden;
+            Bet.Visibility = Visibility.Visible;
+        }
+        private void ClearHands()
+        {
+            dealercardsbox.Clear();
+            playercardsbox.Clear();
+        }
+        private void UpdateHands()
+        {   
+            playercardsbox.Text = playerhand.ToString();
+            dealercardsbox.Text = dealerhand.ToString();
         }
 
-        
+        private void Bet_Click(object sender, RoutedEventArgs e)
+        {
+            playerhand += (rnd.Next(1, 11));
+            dealerhand += (rnd.Next(1, 11));
+            playerhand += (rnd.Next(1, 11));
+            dealerhand += (rnd.Next(1, 11));
+            UpdateHands();
+            Bet.Visibility = Visibility.Hidden;
+        }
     }
 }

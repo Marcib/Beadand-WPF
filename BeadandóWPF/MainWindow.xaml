@@ -13,15 +13,19 @@
         </Grid.RowDefinitions>
 
         <!-- Játékos lapjai -->
-       
+
 
         <!-- Gombok -->
         <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Width="146">
             <Button Content="Hit" Click="Hit_Click" Margin="5" />
             <Button Content="Stand" Click="Stand_Click" Margin="5" />
-            <Button Content="New Game" Click="NewGame_Click" Margin="5" />
+            <Button Name="NewGame" Content="New Game" Click="NewGame_Click" Margin="5" />
         </StackPanel>
-        <TextBox x:Name="playercardsbox" HorizontalAlignment="Left" Margin="122,200,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Height="81"/>
-        <TextBox x:Name="dealercardsbox" HorizontalAlignment="Left" Margin="539,209,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Height="92"/>
+        <TextBox x:Name="playercardsbox" HorizontalAlignment="Left" Margin="122,200,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Height="81"/>
+        <TextBox x:Name="dealercardsbox" HorizontalAlignment="Left" Margin="539,209,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Height="92"/>
+        <TextBox x:Name="prevplayercards" HorizontalAlignment="Left" Margin="122,138,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Height="27" />
+        <TextBox x:Name="prevdealercards" HorizontalAlignment="Left" Margin="539,143,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Height="22"/>
+        <Button x:Name="Bet" Content="Bet" HorizontalAlignment="Left" Margin="493,0,0,0" VerticalAlignment="Center" Grid.Row="1" Click="Bet_Click"/>
+        <Label x:Name="playercard" Content="playercard" HorizontalAlignment="Left" Margin="122,174,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Window>
